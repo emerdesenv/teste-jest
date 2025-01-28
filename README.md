@@ -21,7 +21,7 @@
 
 ## Documentações de Referências
 
-* **Jmeter** - https://jmeter.apache.org/
+* **Jest** - https://jestjs.io/
 * **MongoDB Clound** - https://cloud.mongodb.com/
 * **MongoDB Compass** - https://www.mongodb.com/pt-br/docs/compass/current/install/
 
