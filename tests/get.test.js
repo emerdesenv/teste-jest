@@ -23,7 +23,7 @@ describe('Função para pegar um Carro', () => {
         expect(res.status).toBe(200);
     });
 
-    test('Deve acusar erro de carro não encontrado', async () => {
+    it('Deve acusar erro de carro não encontrado', async () => {
         var userId = '678a94a0f06c3657cc7fc11T';
 
         // Enviar requisição para buscar o carro
