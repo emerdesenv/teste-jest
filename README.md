@@ -33,4 +33,4 @@
 
 ## Rodando o Jest
 
-* npm test
+* **npm test** - Para rodar os testes
