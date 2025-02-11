@@ -11,7 +11,6 @@ afterAll(async () => {
     // Limpeza após os testes
     await mongoose.disconnect();
 });
-
 describe('Função para pegar um Carro', () => {
     it('Deve encontrar o carro', async () => {
         var userId = '67991afc2a565f894cb0ee4a';
