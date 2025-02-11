@@ -24,5 +24,8 @@ jobs:
       - name: 📦 Instalar dependências
         run: npm install
 
+      - name: Seta as variáveis de ambiente
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
       - name: 🧪 Rodar os testes com Jest
         run: npm test
