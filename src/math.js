@@ -6,4 +6,12 @@ function soma(a, b) {
     return a + b;
 }
 
-module.exports = { soma };
+function imposto(valor) {
+    if(valor > 100) {
+        return valor * 0.10;
+    } else {
+        return valor * 0.05;
+    }
+}
+
+module.exports = { soma, imposto };

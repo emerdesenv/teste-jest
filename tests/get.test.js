@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 
 beforeAll(async () => {
     // Configuração antes de rodar os testes (ex: conexão com o MongoDB)
-    await mongoose.connect(process.env.MONGODB_URI);
+    // await mongoose.connect(process.env.MONGODB_URI);
 });
 
 afterAll(async () => {
-    // Limpeza após os testes
+    // Fechando a conexão com o MongoDB
     await mongoose.disconnect();
 });
 describe('Função para pegar um Carro', () => {
