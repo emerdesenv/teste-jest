@@ -59,8 +59,7 @@ jobs:
             --arg job "**🚀 Teste Concluído!**" \
             --arg testname "📝 **Nome do Teste:** $JOB_NAME" \
             --arg duration "⏱ **Duração:** ${DURATION} segundos" \
-            --arg link "🔗 [Veja no GitHub](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" \
-            '{username: $username, avatar_url: $avatar_url, content: ($job + "\n" + $testname + "\n" + $duration + "\n" + $link)}'
+            --arg link "🔗 [Veja no GitHub](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
           )
 
           curl -H "Content-Type: application/json" \
