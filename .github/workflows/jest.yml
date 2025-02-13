@@ -50,11 +50,17 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           JOB_NAME: "Test Execution"
         run: |
+          # Recarregar variáveis do GITHUB_ENV
+          source $GITHUB_ENV
+          
           MESSAGE=$(jq -n \
             --arg username "GitHub Actions" \
             --arg avatar_url "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" \
-            --arg content "**🚀 Teste Concluído!**\n📝 **Nome do Teste:** $JOB_NAME\n⏱ **Duração:** $DURATION segundos\n🔗 [Veja no GitHub](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" \
-            '{username: $username, avatar_url: $avatar_url, content: $content}'
+            --arg job "**🚀 Teste Concluído!**" \
+            --arg testname "📝 **Nome do Teste:** $JOB_NAME" \
+            --arg duration "⏱ **Duração:** ${DURATION} segundos" \
+            --arg link "🔗 [Veja no GitHub](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" \
+            '{username: $username, avatar_url: $avatar_url, content: ($job + "\n" + $testname + "\n" + $duration + "\n" + $link)}'
           )
 
           curl -H "Content-Type: application/json" \
