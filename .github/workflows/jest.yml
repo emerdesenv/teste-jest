@@ -41,5 +41,5 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
           -X POST \
-          -d '{"username": "GitHub Actions", "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "content": "🚀 **Deploy concluído com sucesso!** \🔗 **Repositório**: ${{ github.repository }} \🔀 **Branch**: ${{ github.ref }}' \
+          -d '{"username": "GitHub Actions", "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "content": "🚀 **Deploy concluído com sucesso!**\n🔗 **Repositório**: ${{ github.repository }}\n🔀 **Branch**: ${{ github.ref }}\n"}' \
           $DISCORD_WEBHOOK
