@@ -34,3 +34,12 @@ jobs:
         with:
           name: test-results
           path: coverage
+      - name: Enviar notificação para Discord
+        if: always()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{"content": "🚀 Teste concluído com sucesso no GitHub Actions!"}' \
+          $DISCORD_WEBHOOK
