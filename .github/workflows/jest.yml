@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Registrar horário de início
+        run: echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
+        
       - name: 🚀 Checkout do repositório
         uses: actions/checkout@v4
 
@@ -34,12 +37,32 @@ jobs:
         with:
           name: test-results
           path: coverage
+
+      - name: Calcular duração dos testes
+        run: |
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - START_TIME))
+          echo "DURATION=$DURATION" >> $GITHUB_ENV
+
       - name: Enviar notificação para Discord
         if: always()
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          JOB_NAME: "Test Execution"
         run: |
+          MESSAGE=$(cat <<EOF
+          {
+            "username": "GitHub Actions",
+            "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+            "content": "**🚀 Teste Concluído!**\n
+            📝 **Nome do Teste:** $JOB_NAME\n
+            ⏱ **Duração:** $DURATION segundos\n
+            🔗 [Veja no GitHub](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          }
+          EOF
+          )
+          
           curl -H "Content-Type: application/json" \
-          -X POST \
-          -d '{"username": "GitHub Actions", "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "content": "🚀 Deploy concluído com sucesso!\n🔗 Repositório: ${{ github.repository }}\n🔀 Branch: ${{ github.ref }}\n🕒 Finalizado em: $(date +%H:%M:%S)"}' \
-          $DISCORD_WEBHOOK
+               -X POST \
+               -d "$MESSAGE" \
+               $DISCORD_WEBHOOK
