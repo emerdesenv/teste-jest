@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:  # Permite a execução manual através da interface do GitHub
 
 jobs:
   test:
