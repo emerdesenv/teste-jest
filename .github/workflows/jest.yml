@@ -50,18 +50,13 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           JOB_NAME: "Test Execution"
         run: |
-          MESSAGE=$(cat <<EOF
-          {
-            "username": "GitHub Actions",
-            "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-            "content": "**🚀 Teste Concluído!**\n
-            📝 **Nome do Teste:** $JOB_NAME\n
-            ⏱ **Duração:** $DURATION segundos\n
-            🔗 [Veja no GitHub](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
-          }
-          EOF
+          MESSAGE=$(jq -n \
+            --arg username "GitHub Actions" \
+            --arg avatar_url "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" \
+            --arg content "**🚀 Teste Concluído!**\n📝 **Nome do Teste:** $JOB_NAME\n⏱ **Duração:** $DURATION segundos\n🔗 [Veja no GitHub](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" \
+            '{username: $username, avatar_url: $avatar_url, content: $content}'
           )
-          
+
           curl -H "Content-Type: application/json" \
                -X POST \
                -d "$MESSAGE" \
