@@ -50,14 +50,19 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           JOB_NAME: "Test Execution"
         run: |
-          curl -H "Content-Type: application/json" \
-          -X POST \
-          -d '{
+          MESSAGE=$(cat <<EOF
+          {
             "username": "GitHub Actions",
             "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
             "content": "**🚀 Teste Concluído!**\n
-            📝 **Nome do Teste:** '"$JOB_NAME"'\n
-            ⏱ **Duração:** '"$DURATION"' segundos\n
-            🔗 [Veja no GitHub]('"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"')"
-          }' \
-          $DISCORD_WEBHOOK
+            📝 **Nome do Teste:** $JOB_NAME\n
+            ⏱ **Duração:** $DURATION segundos\n
+            🔗 [Veja no GitHub](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          }
+          EOF
+          )
+          
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d "$MESSAGE" \
+               $DISCORD_WEBHOOK
