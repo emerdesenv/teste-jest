@@ -13,7 +13,7 @@ afterAll(async () => {
 });
 describe('Função para pegar um Carro', () => {
     it('Deve encontrar o carro', async () => {
-        var userId = '67991afc2a565f894cb0ee4a';
+        const userId = '67991afc2a565f894cb0ee4a';
 
         // Enviar requisição para buscar o carro
         const res = await request(app).get(`/api/carros/${userId}`);
@@ -23,7 +23,7 @@ describe('Função para pegar um Carro', () => {
     });
 
     it('Deve acusar erro de carro não encontrado', async () => {
-        var userId = '678a94a0f06c3657cc7fc11T';
+        const userId = '678a94a0f06c3657cc7fc11T';
 
         // Enviar requisição para buscar o carro
         const res = await request(app).get(`/api/carros/${userId}`);
