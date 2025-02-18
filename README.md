@@ -34,4 +34,5 @@
 
 ## Rodando o Jest
 
-* **npm test** - Para rodar os testes
+* **npm test** - Para rodar todos os testes
+* **npm test -- tests/api.test.js** - Para rodar os testes de algum arquivo
