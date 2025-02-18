@@ -24,6 +24,7 @@
 * **Jest** - https://jestjs.io/
 * **MongoDB Clound** - https://cloud.mongodb.com/
 * **MongoDB Compass** - https://www.mongodb.com/pt-br/docs/compass/current/install/
+* **JsonPlacehoder** - https://jsonplaceholder.typicode.com
 
 ## Ligando a API Localhost para teste com o MongoDB Clound
 
