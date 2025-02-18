@@ -20,4 +20,8 @@ describe('Testes de Integração e Unitários - API JSONPlaceholder', () => {
         expect(titulos.length).toBe(posts.length); // O número de títulos deve ser igual ao número de posts
         expect(titulos[0]).toBe(posts[0].title); // O primeiro título deve ser o mesmo do primeiro post
     });
+
+    test('Deve acusar erro na função.', async () => {
+        expect(() => extrairTitulos(false)).toThrow("A entrada precisa ser um array de objetos");
+    });
 });
