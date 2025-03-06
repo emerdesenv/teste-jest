@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🚀 Checkout do repositório
+      - name: 🚀 Checkout do Repositório
         uses: actions/checkout@v4
 
       - name: 🔧 Configurar Node.js
@@ -22,10 +22,10 @@ jobs:
         with:
           node-version: 18
 
-      - name: 📦 Instalar dependências
+      - name: 📦 Instalar dependências do projeto
         run: npm install
 
-      - name: 🧪 Rodar os testes com Jest
+      - name: 🧪 Rodar os testes do Jest
         run: npm test
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
@@ -33,7 +33,7 @@ jobs:
       - name: 📂 Upload das evidências de teste
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: 📑 Evidências dos Testes
           path: relatorio.html
       - name: Enviar notificação para Discord
         if: always()
