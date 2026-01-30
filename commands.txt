@@ -1,0 +1,39 @@
+// Insert
+
+const usuario = { nome: 'João', email: 'joao@email.com' };
+
+connection.query(
+    'INSERT INTO usuarios (nome, email) VALUES (?, ?)', [usuario.nome, usuario.email],
+    (err) => {
+        if(err) {
+            console.error('Erro ao inserir dados:', err);
+            return;
+        }
+
+        console.log('Usuário inserido com sucesso!');
+    }
+);
+
+// Update
+connection.query(
+    'UPDATE usuarios SET nome = ? WHERE id = ?', ['Carlos', 1],
+    (err) => {
+        if(err) throw err;
+        console.log('Usuário atualizado com sucesso!');
+    }
+);
+
+// Delete
+connection.query(
+    'DELETE FROM usuarios WHERE id = ?', [1],
+    (err) => {
+        if(err) throw err;
+        console.log('Usuário excluído com sucesso!');
+    }
+);
+
+//Read
+connection.query('SELECT * FROM usuarios', (err, results) => {
+    if(err) throw err;
+    console.log(results);
+});
